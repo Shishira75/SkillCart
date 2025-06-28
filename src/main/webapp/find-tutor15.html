@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillCart - Affordable Skill Sharing Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+       
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            min-height: 100vh;
+        }
+       
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+       
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+       
+        .logo .cart-icon {
+            background: #ffd43b;
+            color: #6a11cb;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+       
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+       
+        nav ul li {
+            margin-left: 25px;
+        }
+       
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+       
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+       
+        .btn {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+       
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+        }
+       
+        .container {
+            padding: 120px 5% 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+       
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+       
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+       
+        .hero .tagline {
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+       
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+       
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+       
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+       
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+       
+        .feature-card i {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #ffd43b;
+        }
+       
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+       
+        .feature-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+       
+        .section-title {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 36px;
+        }
+       
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 40px;
+            opacity: 0.8;
+            font-size: 16px;
+        }
+       
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+       
+        .skill-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+       
+        .skill-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+       
+        .skill-card i {
+            font-size: 30px;
+            margin-bottom: 15px;
+            color: #ffd43b;
+        }
+       
+        .tutors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+       
+        .tutor-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+       
+        .tutor-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+       
+        .tutor-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #6a11cb;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+        }
+       
+        .tutor-card h3 {
+            margin-bottom: 5px;
+        }
+       
+        .tutor-card p {
+            opacity: 0.8;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+       
+        .rating {
+            color: #ffd43b;
+            margin-bottom: 15px;
+        }
+       
+        .price {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+       
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+       
+        .modal-content {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+        }
+       
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+       
+        .modal h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+       
+        .modal p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+       
+        .modal ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+       
+        .modal ul li {
+            margin-bottom: 10px;
+        }
+       
+        footer {
+            background: rgba(0,0,0,0.2);
+            padding: 30px 5%;
+            text-align: center;
+        }
+       
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+       
+        .footer-links a {
+            color: white;
+            margin: 0 15px 10px;
+            text-decoration: none;
+        }
+       
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+       
+        .social-links {
+            margin-bottom: 20px;
+        }
+       
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            margin: 0 10px;
+            color: white;
+            font-size: 18px;
+            line-height: 40px;
+            transition: all 0.3s;
+        }
+       
+        .social-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+       
+        .copyright {
+            opacity: 0.7;
+            font-size: 14px;
+        }
+       
+        /* Booking form styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+       
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+       
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background: rgba(255,255,255,0.9);
+        }
+       
+        .tutor-info {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+       
+        .tutor-info h3 {
+            margin-bottom: 10px;
+        }
+       
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+       
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+       
+        .payment-method:hover {
+            background: rgba(255,255,255,0.2);
+        }
+       
+        .payment-method input {
+            margin-right: 10px;
+        }
+       
+        .payment-method i {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+       
+        .booking-summary {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+       
+        .booking-summary h3 {
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 10px;
+        }
+       
+        .booking-summary p {
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+       
+        .booking-summary .total {
+            font-weight: 600;
+            font-size: 18px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+       
+        /* Course tutors modal */
+        .course-tutors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+       
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+            }
+           
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+           
+            nav ul li {
+                margin: 5px 10px;
+            }
+           
+            .hero h1 {
+                font-size: 36px;
+            }
+           
+            .hero .tagline {
+                font-size: 20px;
+            }
+           
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="register12.html" class="logo">
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            SKILLCART
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#" id="tutorsLink">Tutors</a></li>
+                <li><a href="#" id="skillsLink">Skills</a></li>
+                <li><a href="#" id="howItWorksLink">How it works</a></li>
+                <li><a href="#" id="earnCoinsLink">Earn Super Coins</a></li>
+                <li><a href="becometutor11.html" id="becomeTutorLink">Become a Tutor</a></li>
+                <li><a href="login12.html" class="btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Explore.Learn.Achieve</h1>
+            <div class="tagline">Rise with knowledge - Fuel your future</div>
+            <p>SkillCart connects learners with affordable tutors for personalized skill development. Start your learning journey today!</p>
+            <a href="register12.html" class="btn" style="padding: 12px 30px; font-size: 18px;">Get Started</a>
+        </section>
+
+        <section>
+            <h2 class="section-title">Why Choose SkillCart?</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-rupee-sign"></i>
+                    <h3>Affordable Pricing</h3>
+                    <p>Quality learning starting at just ₹50. No hidden fees or commissions.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Peer-to-Peer Learning</h3>
+                    <p>Learn from students and professionals who understand your needs.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Flexible Scheduling</h3>
+                    <p>Book sessions at your convenience with our easy slot booking system.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tutorsSection">
+            <h2 class="section-title">Our Top Tutors</h2>
+            <p class="section-subtitle">12,345+ expert tutors across 50+ skills</p>
+            <div class="tutors-grid">
+                <div class="tutor-card">
+                    <div class="tutor-img">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Rahul Sharma</h3>
+                    <p>Python Programming</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span> (42)</span>
+                    </div>
+                    <div class="price">₹99/session</div>
+                    <button class="btn book-now-btn" data-tutor="Rahul Sharma" data-course="Python Programming" data-rating="4.5">Book Now</button>
+                </div>
+                <div class="tutor-card">
+                    <div class="tutor-img">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Priya Patel</h3>
+                    <p>Graphic Design</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span> (36)</span>
+                    </div>
+                    <div class="price">₹149/session</div>
+                    <button class="btn book-now-btn" data-tutor="Priya Patel" data-course="Graphic Design" data-rating="4.0">Book Now</button>
+                </div>
+                <div class="tutor-card">
+                    <div class="tutor-img">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Arjun Kumar</h3>
+                    <p>Maths Tutor</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span> (58)</span>
+                    </div>
+                    <div class="price">₹79/session</div>
+                    <button class="btn book-now-btn" data-tutor="Arjun Kumar" data-course="Maths" data-rating="5.0">Book Now</button>
+                </div>
+                <div class="tutor-card">
+                    <div class="tutor-img">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Neha Gupta</h3>
+                    <p>English Speaking</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span> (64)</span>
+                    </div>
+                    <div class="price">₹129/session</div>
+                    <button class="btn book-now-btn" data-tutor="Neha Gupta" data-course="English Speaking" data-rating="5.0">Book Now</button>
+                </div>
+                <div class="tutor-card">
+                    <div class="tutor-img">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Sanjay Verma</h3>
+                    <p>Web Development</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span> (47)</span>
+                    </div>
+                    <div class="price">₹159/session</div>
+                    <button class="btn book-now-btn" data-tutor="Sanjay Verma" data-course="Web Development" data-rating="4.5">Book Now</button>
+                </div>
+                <div class="tutor-card">
+                    <div class="tutor-img">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Ananya Singh</h3>
+                    <p>Video Editing</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span> (29)</span>
+                    </div>
+                    <div class="price">₹179/session</div>
+                    <button class="btn book-now-btn" data-tutor="Ananya Singh" data-course="Video Editing" data-rating="4.0">Book Now</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="skillsSection">
+            <h2 class="section-title">Popular Skills</h2>
+            <p class="section-subtitle">Choose from 50+ in-demand skills</p>
+            <div class="skills-grid">
+                <div class="skill-card" data-skill="Python">
+                    <i class="fab fa-python"></i>
+                    <h3>Python</h3>
+                </div>
+                <div class="skill-card" data-skill="Maths">
+                    <i class="fas fa-square-root-alt"></i>
+                    <h3>Maths</h3>
+                </div>
+                <div class="skill-card" data-skill="Physics">
+                    <i class="fas fa-atom"></i>
+                    <h3>Physics</h3>
+                </div>
+                <div class="skill-card" data-skill="Chemistry">
+                    <i class="fas fa-flask"></i>
+                    <h3>Chemistry</h3>
+                </div>
+                <div class="skill-card" data-skill="Web Design">
+                    <i class="fab fa-html5"></i>
+                    <h3>Web Design</h3>
+                </div>
+                <div class="skill-card" data-skill="Graphic Design">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>Graphic Design</h3>
+                </div>
+                <div class="skill-card" data-skill="English">
+                    <i class="fas fa-language"></i>
+                    <h3>English</h3>
+                </div>
+                <div class="skill-card" data-skill="Video Editing">
+                    <i class="fas fa-video"></i>
+                    <h3>Video Editing</h3>
+                </div>
+                <div class="skill-card" data-skill="Photoshop">
+                    <i class="fab fa-adobe"></i>
+                    <h3>Photoshop</h3>
+                </div>
+                <div class="skill-card" data-skill="Music">
+                    <i class="fas fa-music"></i>
+                    <h3>Music</h3>
+                </div>
+                <div class="skill-card" data-skill="IELTS/TOEFL">
+                    <i class="fas fa-book"></i>
+                    <h3>IELTS/TOEFL</h3>
+                </div>
+                <div class="skill-card" data-skill="App Development">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>App Development</h3>
+                </div>
+                <div class="skill-card" data-skill="C#">
+                    <i class="fab fa-microsoft"></i>
+                    <h3>C#</h3>
+                </div>
+                <div class="skill-card" data-skill="C++">
+                    <i class="fas fa-code"></i>
+                    <h3>C++</h3>
+                </div>
+                <div class="skill-card" data-skill="Java">
+                    <i class="fab fa-java"></i>
+                    <h3>Java</h3>
+                </div>
+                <div class="skill-card" data-skill="JavaScript">
+                    <i class="fab fa-js"></i>
+                    <h3>JavaScript</h3>
+                </div>
+                <div class="skill-card" data-skill="PHP">
+                    <i class="fab fa-php"></i>
+                    <h3>PHP</h3>
+                </div>
+                <div class="skill-card" data-skill="Ruby">
+                    <i class="fas fa-gem"></i>
+                    <h3>Ruby</h3>
+                </div>
+                <div class="skill-card" data-skill="F#">
+                    <i class="fas fa-hashtag"></i>
+                    <h3>F#</h3>
+                </div>
+                <div class="skill-card" data-skill="Data Structures">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Data Structures</h3>
+                </div>
+                <div class="skill-card" data-skill="AI/ML">
+                    <i class="fas fa-brain"></i>
+                    <h3>AI/ML</h3>
+                </div>
+                <div class="skill-card" data-skill="IoT">
+                    <i class="fas fa-wifi"></i>
+                    <h3>IoT</h3>
+                </div>
+                <div class="skill-card" data-skill="Rust">
+                    <i class="fas fa-cog"></i>
+                    <h3>Rust</h3>
+                </div>
+                <div class="skill-card" data-skill="Database Management">
+                    <i class="fas fa-database"></i>
+                    <h3>Database Management</h3>
+                </div>
+                <div class="skill-card" data-skill="TypeScript">
+                    <i class="fas fa-file-code"></i>
+                    <h3>TypeScript</h3>
+                </div>
+                <div class="skill-card" data-skill="Kotlin">
+                    <i class="fab fa-android"></i>
+                    <h3>Kotlin</h3>
+                </div>
+                <div class="skill-card" data-skill="Swift">
+                    <i class="fab fa-swift"></i>
+                    <h3>Swift</h3>
+                </div>
+                <div class="skill-card" data-skill="Perl">
+                    <i class="fas fa-code-branch"></i>
+                    <h3>Perl</h3>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#" id="aboutLink">About Us</a>
+            <a href="#" id="contactLink">Contact Us</a>
+            <a href="#" id="privacyLink">Privacy Policy</a>
+            <a href="#" id="termsLink">Terms of Service</a>
+        </div>
+        <div class="social-links">
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+        <div class="contact-info">
+            <p>SkillCart | Phone: 1234567890 | Email: skillcart07@gmail.com</p>
+        </div>
+        <p class="copyright">© 2025 SkillCart. All rights reserved.</p>
+    </footer>
+
+    <!-- Modals -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>About SkillCart</h2>
+            <p>SkillCart is an affordable, student-centric e-commerce platform built to allow users to buy and sell skills easily. It operates like an online service marketplace but is specifically tailored for low-cost skill sharing, peer tutoring, and digital service booking.</p>
+            <p>Our main aim is to make skill access and delivery affordable, reliable, and easy to use, especially for students and early learners.</p>
+            <p>Unlike high-cost freelancing or learning platforms, SkillCart prioritizes low-budget accessibility and peer-to-peer interaction.</p>
+        </div>
+    </div>
+
+    <div id="howItWorksModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>How SkillCart Works</h2>
+            <h3>For Learners:</h3>
+            <ol>
+                <li>Browse skills and tutors</li>
+                <li>Book a session at your convenient time</li>
+                <li>Connect with the tutor via our messaging system</li>
+                <li>Attend the session and learn</li>
+                <li>Rate your experience</li>
+            </ol>
+            <h3>For Tutors:</h3>
+            <ol>
+                <li>List your skills with details and pricing</li>
+                <li>Set your available time slots</li>
+                <li>Get booking requests from learners</li>
+                <li>Conduct sessions and earn money</li>
+                <li>Build your reputation with ratings</li>
+            </ol>
+        </div>
+    </div>
+
+    <div id="earnCoinsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Earn Super Coins</h2>
+            <p>Super Coins are our way of rewarding active users on SkillCart. Here's how you can earn them:</p>
+            <ul>
+                <li><strong>Complete a course booking:</strong> Earn 10 coins for every session booked</li>
+                <li><strong>Refer a friend:</strong> Get 50 coins when they sign up and book their first session</li>
+                <li><strong>Write reviews:</strong> Earn 5 coins for each helpful review you leave</li>
+                <li><strong>Daily login bonus:</strong> Get 2 coins just for logging in daily</li>
+            </ul>
+            <p>You can redeem 100 Super Coins for ₹100 discount on your next booking!</p>
+        </div>
+    </div>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Contact Us</h2>
+            <p>We'd love to hear from you! Here's how you can reach us:</p>
+            <p><strong>Email:</strong> skillcart07@gmail.com</p>
+            <p><strong>Phone:</strong> 1234567890</p>
+            <p><strong>Address:</strong> SkillCart Dev Team, Warangal</p>
+            <p>Our support team is available Monday to Saturday, 9 AM to 6 PM.</p>
+        </div>
+    </div>
+
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Privacy Policy</h2>
+            <p><strong>Effective Date:</strong> July 1, 2025</p>
+           
+            <h3>1. Information We Collect</h3>
+            <p>We collect the following types of personal data to provide and improve our services:</p>
+            <ul>
+                <li>User Information: Name, email address, mobile number, password</li>
+                <li>User Role Data: Whether you're registering as a Tutor or Learner</li>
+                <li>Service Details: Skills listed, prices, availability, and bookings</li>
+                <li>Messages: Chat content between Tutors and Learners (for safety and support)</li>
+                <li>Usage Info: Pages visited, time spent, actions taken (for analytics and improvements)</li>
+            </ul>
+           
+            <h3>2. How We Use Your Data</h3>
+            <p>We use your data to:</p>
+            <ul>
+                <li>Create and manage user accounts</li>
+                <li>Match learners with relevant skill offers</li>
+                <li>Facilitate slot booking and service checkout</li>
+                <li>Enable secure messaging between users</li>
+                <li>Improve user experience and features</li>
+                <li>Contact you for support or updates</li>
+            </ul>
+            <p>We do not sell or share your personal information with third-party advertisers.</p>
+           
+            <h3>3. Data Security</h3>
+            <p>We take your data privacy seriously by using:</p>
+            <ul>
+                <li>Secure, encrypted login credentials</li>
+                <li>Session timeout and validation features</li>
+                <li>Server-side protection and database security</li>
+                <li>Internal access controls to chat and account data</li>
+            </ul>
+           
+            <h3>4. Your Rights</h3>
+            <p>As a SkillCart user, you have the right to:</p>
+            <ul>
+                <li>View your stored data</li>
+                <li>Update or correct your details</li>
+                <li>Request account deletion</li>
+                <li>Report abuse or suspicious activity</li>
+            </ul>
+            <p>To request changes or deletion, email: skillcart07@gmail.com</p>
+           
+            <h3>5. Cookies & Tracking</h3>
+            <p>We use cookies to:</p>
+            <ul>
+                <li>Keep your session active</li>
+                <li>Personalize your browsing experience</li>
+                <li>Analyze basic usage metrics</li>
+            </ul>
+            <p>You can disable cookies in your browser settings, but some functions may be limited.</p>
+           
+            <h3>6. Third-Party Tools</h3>
+            <p>As SkillCart grows, we may include:</p>
+            <ul>
+                <li>Payment gateways like Razorpay or UPI</li>
+                <li>Video session APIs like Zoom or Google Meet</li>
+            </ul>
+            <p>These services have their own privacy policies which you should review when using them.</p>
+           
+            <h3>7. Changes to This Policy</h3>
+            <p>We may occasionally update this policy to reflect changes in our services. Updated versions will be posted on the website with a new effective date.</p>
+           
+            <h3>8. Contact Us</h3>
+            <p>If you have any questions or concerns regarding your privacy, please reach out to:</p>
+            <p>Email: skillcart07@gmail.com</p>
+            <p>Location: SkillCart Dev Team, Warangal</p>
+        </div>
+    </div>
+
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Terms of Service</h2>
+            <p><strong>Effective Date:</strong> July 1, 2025</p>
+           
+            <h3>1. Acceptance of Terms</h3>
+            <p>By accessing or using the SkillCart platform, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
+           
+            <h3>2. User Responsibilities</h3>
+            <p>As a user of SkillCart, you agree to:</p>
+            <ul>
+                <li>Provide accurate and complete information during registration</li>
+                <li>Maintain the confidentiality of your account credentials</li>
+                <li>Use the platform only for lawful purposes</li>
+                <li>Not engage in any fraudulent or deceptive activities</li>
+                <li>Respect the intellectual property rights of others</li>
+            </ul>
+           
+            <h3>3. Tutor Responsibilities</h3>
+            <p>Tutors on SkillCart must:</p>
+            <ul>
+                <li>Provide accurate information about their skills and qualifications</li>
+                <li>Honor all scheduled sessions or provide adequate notice for cancellations</li>
+                <li>Maintain professional conduct during all interactions</li>
+                <li>Not solicit payments outside the SkillCart platform</li>
+            </ul>
+           
+            <h3>4. Learner Responsibilities</h3>
+            <p>Learners on SkillCart must:</p>
+            <ul>
+                <li>Pay for sessions through the official payment methods</li>
+                <li>Provide honest feedback and ratings</li>
+                <li>Respect the tutor's time and expertise</li>
+                <li>Not share session materials without permission</li>
+            </ul>
+           
+            <h3>5. Payments and Fees</h3>
+            <p>SkillCart charges a 10% platform fee on all transactions. Tutors receive 90% of the session fee. All payments are processed through secure payment gateways.</p>
+           
+            <h3>6. Cancellation Policy</h3>
+            <p>Cancellations made more than 24 hours before a session are fully refunded. Cancellations within 24 hours may incur a 50% cancellation fee.</p>
+           
+            <h3>7. Dispute Resolution</h3>
+            <p>Any disputes between tutors and learners should be reported to SkillCart support within 48 hours of the session. Our team will mediate and make a final decision.</p>
+           
+            <h3>8. Account Termination</h3>
+            <p>SkillCart reserves the right to suspend or terminate accounts that violate these terms or engage in inappropriate behavior without prior notice.</p>
+           
+            <h3>9. Limitation of Liability</h3>
+            <p>SkillCart is not liable for any direct, indirect, incidental, or consequential damages resulting from the use of our platform.</p>
+           
+            <h3>10. Changes to Terms</h3>
+            <p>We may update these terms periodically. Continued use of the platform after changes constitutes acceptance of the new terms.</p>
+           
+            <h3>11. Governing Law</h3>
+            <p>These terms shall be governed by and construed in accordance with the laws of India.</p>
+           
+            <h3>12. Contact Information</h3>
+            <p>For any questions regarding these terms, please contact us at:</p>
+            <p>Email: skillcart07@gmail.com</p>
+            <p>Phone: 1234567890</p>
+        </div>
+    </div>
+
+    <!-- Course Tutors Modal -->
+    <div id="courseTutorsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="courseTutorsTitle">Python Tutors</h2>
+            <div class="course-tutors-grid" id="courseTutorsGrid">
+                <!-- Tutors will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookNowModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Book Your Session</h2>
+           
+            <div class="tutor-info">
+                <h3 id="bookingTutorName"></h3>
+                <p>Course: <span id="bookingCourseName"></span></p>
+                <p>Rating: <span id="bookingTutorRating"></span></p>
+                <p>Price: <span id="bookingPrice"></span></p>
+            </div>
+           
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Preferred Date</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Preferred Time</label>
+                    <select id="time" required>
+                        <option value="">Select a time</option>
+                        <option value="9:00 AM">9:00 AM</option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="12:00 PM">12:00 PM</option>
+                        <option value="1:00 PM">1:00 PM</option>
+                        <option value="2:00 PM">2:00 PM</option>
+                        <option value="3:00 PM">3:00 PM</option>
+                        <option value="4:00 PM">4:00 PM</option>
+                        <option value="5:00 PM">5:00 PM</option>
+                        <option value="6:00 PM">6:00 PM</option>
+                        <option value="7:00 PM">7:00 PM</option>
+                        <option value="8:00 PM">8:00 PM</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="language">Preferred Language</label>
+                    <select id="language" required>
+                        <option value="">Select a language</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="English">English</option>
+                        <option value="Bengali">Bengali</option>
+                        <option value="Telugu">Telugu</option>
+                        <option value="Marathi">Marathi</option>
+                        <option value="Tamil">Tamil</option>
+                        <option value="Urdu">Urdu</option>
+                        <option value="Gujarati">Gujarati</option>
+                        <option value="Kannada">Kannada</option>
+                        <option value="Malayalam">Malayalam</option>
+                        <option value="Punjabi">Punjabi</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn" style="width: 100%; padding: 12px; font-size: 16px;">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Payment Summary</h2>
+           
+            <div class="tutor-info">
+                <h3 id="paymentTutorName"></h3>
+                <p>Course: <span id="paymentCourseName"></span></p>
+                <p>Date: <span id="paymentDate"></span></p>
+                <p>Time: <span id="paymentTime"></span></p>
+            </div>
+           
+            <div class="booking-summary">
+                <h3>Booking Summary</h3>
+                <p><span>Session Fee:</span> <span id="sessionFee"></span></p>
+                <p><span>Platform Fee:</span> <span>₹0</span></p>
+                <p><span>GST (18%):</span> <span id="gstAmount"></span></p>
+                <p class="total"><span>Total Amount:</span> <span id="totalAmount"></span></p>
+            </div>
+           
+            <h3 style="margin-top: 30px;">Choose Payment Method</h3>
+            <div class="payment-methods">
+                <label class="payment-method">
+                    <input type="radio" name="payment" value="upi" checked>
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>UPI Payment</span>
+                </label>
+                <label class="payment-method">
+                    <input type="radio" name="payment" value="card">
+                    <i class="far fa-credit-card"></i>
+                    <span>Credit/Debit Card</span>
+                </label>
+                <label class="payment-method">
+                    <input type="radio" name="payment" value="netbanking">
+                    <i class="fas fa-university"></i>
+                    <span>Net Banking</span>
+                </label>
+                <label class="payment-method">
+                    <input type="radio" name="payment" value="wallet">
+                    <i class="fas fa-wallet"></i>
+                    <span>Wallet</span>
+                </label>
+            </div>
+           
+            <button class="btn" style="width: 100%; padding: 12px; font-size: 16px; margin-top: 20px;" id="payNowBtn">Pay Now</button>
+        </div>
+    </div>
+
+    <!-- Booking Confirmation Modal -->
+    <div id="bookingConfirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div style="text-align: center;">
+                <i class="fas fa-check-circle" style="font-size: 60px; color: #4CAF50; margin-bottom: 20px;"></i>
+                <h2>Booking Confirmed!</h2>
+               
+                <div class="tutor-info" style="margin: 20px 0; text-align: left;">
+                    <h3 id="confirmationTutorName"></h3>
+                    <p>Course: <span id="confirmationCourseName"></span></p>
+                    <p>Date: <span id="confirmationDate"></span></p>
+                    <p>Time: <span id="confirmationTime"></span></p>
+                    <p>Zoom ID: <span>874 5632 1245</span></p>
+                    <p>Zoom Password: <span>SkillCart123</span></p>
+                </div>
+               
+                <p>You will receive an email with all the details shortly.</p>
+                <p>Unlock your potential, one lesson at a time. Your learning journey starts now!</p>
+               
+                <div style="margin-top: 30px;">
+                    <h4>More Tutors You Might Like:</h4>
+                    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+                        <div style="background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px; width: 120px;">
+                            <div style="width: 50px; height: 50px; background: #6a11cb; border-radius: 50%; margin: 0 auto 5px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-user" style="color: white;"></i>
+                            </div>
+                            <p style="font-size: 12px; text-align: center;">Sanjay Verma</p>
+                            <p style="font-size: 10px; text-align: center; opacity: 0.8;">Web Development</p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px; width: 120px;">
+                            <div style="width: 50px; height: 50px; background: #6a11cb; border-radius: 50%; margin: 0 auto 5px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-user" style="color: white;"></i>
+                            </div>
+                            <p style="font-size: 12px; text-align: center;">Ananya Singh</p>
+                            <p style="font-size: 10px; text-align: center; opacity: 0.8;">Video Editing</p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px; width: 120px;">
+                            <div style="width: 50px; height: 50px; background: #6a11cb; border-radius: 50%; margin: 0 auto 5px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-user" style="color: white;"></i>
+                            </div>
+                            <p style="font-size: 12px; text-align: center;">Vikram Joshi</p>
+                            <p style="font-size: 10px; text-align: center; opacity: 0.8;">Physics</p>
+                        </div>
+                    </div>
+                </div>
+               
+                <button class="btn" style="margin-top: 30px;" id="closeConfirmationModal">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const modals = {
+            aboutLink: 'aboutModal',
+            howItWorksLink: 'howItWorksModal',
+            earnCoinsLink: 'earnCoinsModal',
+            contactLink: 'contactModal',
+            privacyLink: 'privacyModal',
+            termsLink: 'termsModal',
+            tutorsLink: 'tutorsSection',
+            skillsLink: 'skillsSection'
+        };
+
+        // Add event listeners to modal triggers
+        for (const [id, modalId] of Object.entries(modals)) {
+            document.getElementById(id).addEventListener('click', function(e) {
+                e.preventDefault();
+               
+                if (id === 'tutorsLink' || id === 'skillsLink') {
+                    // Scroll to section
+                    document.getElementById(modalId).scrollIntoView({ behavior: 'smooth' });
+                    return;
+                }
+               
+                // Show modal
+                document.getElementById(modalId).style.display = 'block';
+            });
+        }
+
+        // Close modals when clicking X
+        document.querySelectorAll('.close-modal').forEach(closeBtn => {
+            closeBtn.addEventListener('click', function() {
+                this.closest('.modal').style.display = 'none';
+            });
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
+            }
+        });
+
+        // Book now buttons
+        document.querySelectorAll('.book-now-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+               
+                // Set tutor details in booking form
+                const tutorName = this.getAttribute('data-tutor');
+                const courseName = this.getAttribute('data-course');
+                const tutorRating = this.getAttribute('data-rating');
+                const price = this.parentElement.querySelector('.price').textContent;
+               
+                document.getElementById('bookingTutorName').textContent = tutorName;
+                document.getElementById('bookingCourseName').textContent = courseName;
+                document.getElementById('bookingTutorRating').textContent = tutorRating + ' ★';
+                document.getElementById('bookingPrice').textContent = price;
+               
+                // Show booking modal
+                document.getElementById('bookNowModal').style.display = 'block';
+            });
+        });
+
+        // Skill cards click handler
+        document.querySelectorAll('.skill-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const skill = this.getAttribute('data-skill');
+                document.getElementById('courseTutorsTitle').textContent = `${skill} Tutors`;
+               
+                // Clear previous tutors
+                const tutorsGrid = document.getElementById('courseTutorsGrid');
+                tutorsGrid.innerHTML = '';
+               
+                // Add sample tutors (in a real app, these would come from a database)
+                const tutors = [
+                    { name: "Rahul Sharma", rating: 4.5, price: "₹99/session", reviews: 42 },
+                    { name: "Priya Patel", rating: 4.0, price: "₹149/session", reviews: 36 },
+                    { name: "Arjun Kumar", rating: 5.0, price: "₹79/session", reviews: 58 },
+                    { name: "Neha Gupta", rating: 5.0, price: "₹129/session", reviews: 64 }
+                ];
+               
+                tutors.forEach(tutor => {
+                    const tutorCard = document.createElement('div');
+                    tutorCard.className = 'tutor-card';
+                    tutorCard.innerHTML = `
+                        <div class="tutor-img">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>${tutor.name}</h3>
+                        <p>${skill}</p>
+                        <div class="rating">
+                            ${'<i class="fas fa-star"></i>'.repeat(Math.floor(tutor.rating))}
+                            ${tutor.rating % 1 !== 0 ? '<i class="fas fa-star-half-alt"></i>' : ''}
+                            ${'<i class="far fa-star"></i>'.repeat(5 - Math.ceil(tutor.rating))}
+                            <span> (${tutor.reviews})</span>
+                        </div>
+                        <div class="price">${tutor.price}</div>
+                        <button class="btn book-now-btn" data-tutor="${tutor.name}" data-course="${skill}" data-rating="${tutor.rating}">Book Now</button>
+                    `;
+                    tutorsGrid.appendChild(tutorCard);
+                });
+               
+                // Add event listeners to new book now buttons
+                tutorsGrid.querySelectorAll('.book-now-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                       
+                        // Set tutor details in booking form
+                        const tutorName = this.getAttribute('data-tutor');
+                        const courseName = this.getAttribute('data-course');
+                        const tutorRating = this.getAttribute('data-rating');
+                        const price = this.parentElement.querySelector('.price').textContent;
+                       
+                        document.getElementById('bookingTutorName').textContent = tutorName;
+                        document.getElementById('bookingCourseName').textContent = courseName;
+                        document.getElementById('bookingTutorRating').textContent = tutorRating + ' ★';
+                        document.getElementById('bookingPrice').textContent = price;
+                       
+                        // Close course tutors modal
+                        document.getElementById('courseTutorsModal').style.display = 'none';
+                       
+                        // Show booking modal
+                        document.getElementById('bookNowModal').style.display = 'block';
+                    });
+                });
+               
+                // Show course tutors modal
+                document.getElementById('courseTutorsModal').style.display = 'block';
+            });
+        });
+
+        // Booking form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+           
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const language = document.getElementById('language').value;
+           
+            // Get tutor details
+            const tutorName = document.getElementById('bookingTutorName').textContent;
+            const courseName = document.getElementById('bookingCourseName').textContent;
+            const priceText = document.getElementById('bookingPrice').textContent;
+            const price = parseInt(priceText.replace(/[^0-9]/g, ''));
+           
+            // Calculate GST and total
+            const gst = Math.round(price * 0.18);
+            const total = price + gst;
+           
+            // Set values in payment modal
+            document.getElementById('paymentTutorName').textContent = tutorName;
+            document.getElementById('paymentCourseName').textContent = courseName;
+            document.getElementById('paymentDate').textContent = new Date(date).toDateString();
+            document.getElementById('paymentTime').textContent = time;
+            document.getElementById('sessionFee').textContent = '₹' + price;
+            document.getElementById('gstAmount').textContent = '₹' + gst;
+            document.getElementById('totalAmount').textContent = '₹' + total;
+           
+            // Close booking modal
+            document.getElementById('bookNowModal').style.display = 'none';
+           
+            // Show payment modal
+            document.getElementById('paymentModal').style.display = 'block';
+        });
+
+        // Pay now button
+        document.getElementById('payNowBtn').addEventListener('click', function() {
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+           
+            // Get tutor details
+            const tutorName = document.getElementById('paymentTutorName').textContent;
+            const courseName = document.getElementById('paymentCourseName').textContent;
+           
+            // Set values in confirmation modal
+            document.getElementById('confirmationTutorName').textContent = tutorName;
+            document.getElementById('confirmationCourseName').textContent = courseName;
+            document.getElementById('confirmationDate').textContent = new Date(date).toDateString();
+            document.getElementById('confirmationTime').textContent = time;
+           
+            // Close payment modal
+            document.getElementById('paymentModal').style.display = 'none';
+           
+            // Show confirmation modal
+            document.getElementById('bookingConfirmationModal').style.display = 'block';
+           
+            // In a real implementation, you would:
+            // 1. Process the payment
+            // 2. Send confirmation email from skillcart07@gmail.com
+            // 3. Create the Zoom meeting and set details
+        });
+
+        // Close confirmation modal
+        document.getElementById('closeConfirmationModal').addEventListener('click', function() {
+            document.getElementById('bookingConfirmationModal').style.display = 'none';
+        });
+
+        // Scroll to top when clicking logo
+        document.querySelector('.logo').addEventListener('click', function(e) {
+            if (e.target.tagName === 'A' || e.target.parentElement.tagName === 'A') {
+                return;
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Set minimum date to today in date picker
+        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+</html>

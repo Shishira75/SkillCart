@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKILLCART - Loading</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .logo-container {
+            text-align: center;
+            animation: fadeIn 0.8s ease-out, float 3s ease-in-out infinite;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 62px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo span {
+            color: #ffd43b;
+            animation: pulse 2s infinite;
+        }
+        
+        .logo .cart-icon {
+            background: #ffd43b;
+            color: #6a11cb;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 36px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <div class="logo">
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            SKILL<span>CART</span>
+        </div>
+    </div>
+
+    <script>
+        // Redirect to register12.html after 3 seconds
+        setTimeout(function() {
+            window.location.href = "register12.html";
+        }, 3000);
+    </script>
+</body>
+</html>

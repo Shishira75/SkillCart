@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Become a Tutor - SkillCart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo span {
+            color: #ffd43b;
+            animation: pulse 2s infinite;
+        }
+        
+        .logo .cart-icon {
+            background: #ffd43b;
+            color: #6a11cb;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 28px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover .cart-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            padding: 40px 30px;
+            transform: translateY(0);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card h2 {
+            text-align: center;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .card h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            border-radius: 2px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 14px 45px 14px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .input-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .input-group input:focus,
+        .input-group select:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #4d90fe;
+            box-shadow: 0 0 0 2px rgba(77, 144, 254, 0.2);
+        }
+        
+        .input-group i {
+            position: absolute;
+            right: 15px;
+            top: 40px;
+            color: #777;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .skill-tag {
+            background: #f0f0f0;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .skill-tag:hover {
+            background: #e0e0e0;
+        }
+        
+        .skill-tag.selected {
+            background: #4a00e0;
+            color: white;
+        }
+        
+        .availability-slots {
+            margin-top: 20px;
+        }
+        
+        .slot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .slot {
+            background: #f5f5f5;
+            padding: 8px;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .slot:hover {
+            background: #e0e0e0;
+        }
+        
+        .slot.selected {
+            background: #4a00e0;
+            color: white;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20%;
+            height: 200%;
+            opacity: 0;
+            transform: rotate(30deg);
+            background: rgba(255, 255, 255, 0.13);
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0.13) 0%,
+                rgba(255, 255, 255, 0.13) 77%,
+                rgba(255, 255, 255, 0.5) 92%,
+                rgba(255, 255, 255, 0.0) 100%
+            );
+        }
+        
+        .btn:hover {
+            background: linear-gradient(to right, #3a00c0, #7a1dc2);
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
+        }
+        
+        .btn:hover:after {
+            opacity: 1;
+            left: 130%;
+            transition-property: left, top, opacity;
+            transition-duration: 0.7s, 0.7s, 0.15s;
+            transition-timing-function: ease;
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 15px;
+            color: #666;
+        }
+        
+        .login-link a {
+            color: #4a00e0;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 5px;
+            transition: all 0.2s;
+            position: relative;
+        }
+        
+        .login-link a:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4a00e0;
+            transition: width 0.3s;
+        }
+        
+        .login-link a:hover:after {
+            width: 100%;
+        }
+        
+        /* Success message */
+        .success-message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideDown 0.5s, fadeOut 0.5s 2.5s forwards;
+        }
+        
+        @keyframes slideDown {
+            from {
+                top: -50px;
+            }
+            to {
+                top: 20px;
+            }
+        }
+        
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .card {
+                padding: 30px 20px;
+            }
+            
+            .logo {
+                font-size: 36px;
+            }
+            
+            .logo .cart-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+            
+            .card h2 {
+                font-size: 24px;
+            }
+            
+            .slot-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <div class="logo">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                SKILL<span>CART</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Become a Tutor</h2>
+            
+            <form id="tutorRegistrationForm">
+                <div class="input-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" placeholder="Enter your full name" required>
+                    <i class="fas fa-user"></i>
+                </div>
+                
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <i class="fas fa-envelope"></i>
+                </div>
+                
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                    <i class="fas fa-phone"></i>
+                </div>
+                
+                <div class="input-group">
+                    <label for="qualification">Highest Qualification</label>
+                    <input type="text" id="qualification" placeholder="e.g., B.Tech Computer Science" required>
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                
+                <div class="input-group">
+                    <label for="experience">Teaching Experience (years)</label>
+                    <input type="number" id="experience" placeholder="Enter years of experience" min="0" required>
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                
+                <div class="input-group">
+                    <label>Select Your Skills</label>
+                    <div class="skill-tags">
+                        <div class="skill-tag" data-skill="Python">Python</div>
+                        <div class="skill-tag" data-skill="Java">Java</div>
+                        <div class="skill-tag" data-skill="Web Development">Web Dev</div>
+                        <div class="skill-tag" data-skill="Graphic Design">Graphic Design</div>
+                        <div class="skill-tag" data-skill="Maths">Maths</div>
+                        <div class="skill-tag" data-skill="Physics">Physics</div>
+                        <div class="skill-tag" data-skill="Chemistry">Chemistry</div>
+                        <div class="skill-tag" data-skill="English">English</div>
+                        <div class="skill-tag" data-skill="IELTS/TOEFL">IELTS/TOEFL</div>
+                        <div class="skill-tag" data-skill="Video Editing">Video Editing</div>
+                    </div>
+                    <input type="hidden" id="selectedSkills">
+                </div>
+                
+                <div class="input-group">
+                    <label for="bio">Short Bio/Introduction</label>
+                    <textarea id="bio" placeholder="Tell learners about yourself and your teaching approach" required></textarea>
+                    <i class="fas fa-pen"></i>
+                </div>
+                
+                <div class="input-group">
+                    <label for="hourlyRate">Hourly Rate (₹)</label>
+                    <input type="number" id="hourlyRate" placeholder="Enter your hourly rate (e.g., 100)" min="50" required>
+                    <i class="fas fa-rupee-sign"></i>
+                </div>
+                
+                <div class="input-group">
+                    <label>Availability</label>
+                    <div class="availability-slots">
+                        <p>Select your available time slots:</p>
+                        <div class="slot-grid">
+                            <div class="slot" data-day="Mon" data-time="9AM-11AM">Mon 9AM-11AM</div>
+                            <div class="slot" data-day="Mon" data-time="2PM-4PM">Mon 2PM-4PM</div>
+                            <div class="slot" data-day="Tue" data-time="9AM-11AM">Tue 9AM-11AM</div>
+                            <div class="slot" data-day="Tue" data-time="2PM-4PM">Tue 2PM-4PM</div>
+                            <div class="slot" data-day="Wed" data-time="9AM-11AM">Wed 9AM-11AM</div>
+                            <div class="slot" data-day="Wed" data-time="2PM-4PM">Wed 2PM-4PM</div>
+                            <div class="slot" data-day="Thu" data-time="9AM-11AM">Thu 9AM-11AM</div>
+                            <div class="slot" data-day="Thu" data-time="2PM-4PM">Thu 2PM-4PM</div>
+                            <div class="slot" data-day="Fri" data-time="9AM-11AM">Fri 9AM-11AM</div>
+                            <div class="slot" data-day="Fri" data-time="2PM-4PM">Fri 2PM-4PM</div>
+                            <div class="slot" data-day="Sat" data-time="9AM-11AM">Sat 9AM-11AM</div>
+                            <div class="slot" data-day="Sat" data-time="2PM-4PM">Sat 2PM-4PM</div>
+                            <div class="slot" data-day="Sun" data-time="9AM-11AM">Sun 9AM-11AM</div>
+                            <div class="slot" data-day="Sun" data-time="2PM-4PM">Sun 2PM-4PM</div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="selectedSlots">
+                </div>
+                
+                <div class="input-group">
+                    <label for="demoVideo">Demo Video Link (Optional)</label>
+                    <input type="url" id="demoVideo" placeholder="YouTube or other video link">
+                    <i class="fas fa-video"></i>
+                </div>
+                
+                <button type="submit" class="btn">Apply as Tutor</button>
+            </form>
+            
+            <div class="login-link">
+                Already have an account? <a href="login12.html">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Skill tag selection
+        const skillTags = document.querySelectorAll('.skill-tag');
+        const selectedSkillsInput = document.getElementById('selectedSkills');
+        
+        skillTags.forEach(tag => {
+            tag.addEventListener('click', function() {
+                this.classList.toggle('selected');
+                updateSelectedSkills();
+            });
+        });
+        
+        function updateSelectedSkills() {
+            const selectedSkills = [];
+            document.querySelectorAll('.skill-tag.selected').forEach(tag => {
+                selectedSkills.push(tag.getAttribute('data-skill'));
+            });
+            selectedSkillsInput.value = selectedSkills.join(', ');
+        }
+        
+        // Time slot selection
+        const slots = document.querySelectorAll('.slot');
+        const selectedSlotsInput = document.getElementById('selectedSlots');
+        
+        slots.forEach(slot => {
+            slot.addEventListener('click', function() {
+                this.classList.toggle('selected');
+                updateSelectedSlots();
+            });
+        });
+        
+        function updateSelectedSlots() {
+            const selectedSlots = [];
+            document.querySelectorAll('.slot.selected').forEach(slot => {
+                selectedSlots.push(slot.getAttribute('data-day') + ' ' + slot.getAttribute('data-time'));
+            });
+            selectedSlotsInput.value = selectedSlots.join('; ');
+        }
+        
+        // Form submission
+        document.getElementById('tutorRegistrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate at least one skill is selected
+            if (selectedSkillsInput.value === '') {
+                alert('Please select at least one skill you can teach');
+                return;
+            }
+            
+            // Validate at least one time slot is selected
+            if (selectedSlotsInput.value === '') {
+                alert('Please select at least one available time slot');
+                return;
+            }
+            
+            // Show success message
+            const successMsg = document.createElement('div');
+            successMsg.className = 'success-message';
+            successMsg.innerHTML = '<i class="fas fa-check-circle"></i> Tutor application submitted successfully! We will review your application shortly.';
+            document.body.appendChild(successMsg);
+            
+            // In a real implementation, you would send the form data to your server here
+            // For demo purposes, we'll just show the success message
+            
+            // Reset form
+            this.reset();
+            document.querySelectorAll('.skill-tag, .slot').forEach(el => {
+                el.classList.remove('selected');
+            });
+            selectedSkillsInput.value = '';
+            selectedSlotsInput.value = '';
+            
+            // Redirect after 5 seconds
+            setTimeout(() => {
+                window.location.href = 'login12.html';
+            }, 5000);
+        });
+        
+        // Add animation to input icons
+        const icons = document.querySelectorAll('.input-group i');
+        icons.forEach(icon => {
+            icon.addEventListener('click', function() {
+                const input = this.previousElementSibling;
+                input.focus();
+                
+                // Add animation
+                this.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
